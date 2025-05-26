@@ -1,2 +1,3 @@
-# kmf-station-update-robot
-Update robot for kmf-station.
+# kmf-station-update-bot
+
+Update bot for kmf-station.
