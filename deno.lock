@@ -4,8 +4,7 @@
     "npm:@hono/swagger-ui@~0.5.1": "0.5.1_hono@4.7.10",
     "npm:@hono/zod-openapi@~0.19.6": "0.19.6_hono@4.7.10_zod@3.25.28",
     "npm:hono@^4.7.10": "4.7.10",
-    "npm:octokit@^5.0.2": "5.0.2_@octokit+core@7.0.2",
-    "npm:zod@^3.25.28": "3.25.28"
+    "npm:octokit@^5.0.2": "5.0.2_@octokit+core@7.0.2"
   },
   "npm": {
     "@asteasolutions/zod-to-openapi@7.3.2_zod@3.25.28": {
@@ -287,8 +286,7 @@
       "npm:@hono/swagger-ui@~0.5.1",
       "npm:@hono/zod-openapi@~0.19.6",
       "npm:hono@^4.7.10",
-      "npm:octokit@^5.0.2",
-      "npm:zod@^3.25.28"
+      "npm:octokit@^5.0.2"
     ]
   }
 }
