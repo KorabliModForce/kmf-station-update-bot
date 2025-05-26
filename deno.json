@@ -1,0 +1,20 @@
+{
+  "nodeModulesDir": "auto",
+  "tasks": {
+    "start": "deno run --unstable-cron --env-file --allow-net --allow-env --allow-read --allow-sys main.ts",
+    "deploy": "deno run -A jsr:@deno/deployctl@^1.13.1 deploy --env-file=.env.prod"
+  },
+  "compilerOptions": {
+    "lib": [
+      "deno.window",
+      "deno.ns",
+      "deno.unstable"
+    ]
+  },
+  "imports": {
+    "@hono/swagger-ui": "npm:@hono/swagger-ui@^0.5.1",
+    "@hono/zod-openapi": "npm:@hono/zod-openapi@^0.19.6",
+    "hono": "npm:hono@^4.7.10",
+    "octokit": "npm:octokit@^5.0.2"
+  }
+}
