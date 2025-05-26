@@ -18,7 +18,9 @@ if (!KMF_STATION_SECRET) {
   console.warn('KMF_STATION_SECRET not specified')
 }
 
-const octokit = new Octokit({ token: Deno.env.get('GITHUB_TOKEN') })
+const VERSION_REGEX = /[0-9]+\.[0-9]+\.([0-9]+)\.([0-9]+).[a-zA-Z]+/
+
+const octokit = new Octokit({ auth: Deno.env.get('GITHUB_TOKEN') })
 
 const crons: Record<
   string,
@@ -37,9 +39,6 @@ const crons: Record<
           },
         }
       )
-      console.info('GitHub latest version:', ghRes.data.name)
-
-      // TODO: 我感觉还可以检测下是不是真的需要更新
 
       const archive = ghRes.data.assets.find(({ name }) =>
         name.endsWith('.zh.mod.zip')
@@ -48,12 +47,49 @@ const crons: Record<
         console.warn('Latest releases do not have a valid archive!')
         return
       }
+      const ghVersion = archive.name.replace(/\.mod\.zip$/, '')
+      console.info('GitHub latest version:', ghVersion)
+
+      const preStRes = await fetch(
+        new URL(
+          `/mod/korabli-lesta-l10n/${ghVersion}, '')}`,
+          KMF_STATION_URL_BASE
+        ),
+        {
+          redirect: 'manual',
+        }
+      )
+      console.debug(
+        'station redirect location',
+        preStRes.headers.get('location')
+      )
+      const stVersion = preStRes.headers
+        .get('location')
+        ?.match(VERSION_REGEX)?.[0]
+      console.info('Station latest version:', stVersion)
+      if (stVersion) {
+        const stVersionMatch = stVersion.match(VERSION_REGEX)
+        const ghVersionMatch = ghVersion.match(VERSION_REGEX)
+        console.debug('matches', stVersionMatch, ghVersionMatch)
+        if (stVersionMatch && ghVersionMatch) {
+          if (
+            Number.parseInt(stVersionMatch[1]) >
+              Number.parseInt(ghVersionMatch[1]) ||
+            Number.parseInt(stVersionMatch[2]) >=
+              Number.parseInt(ghVersionMatch[2])
+          ) {
+            console.info('Already latest.')
+            return
+          }
+        }
+      }
+
       const blob = await (await fetch(archive.browser_download_url)).blob()
       console.info('Get blob.')
 
       const stRes = await fetch(
         new URL(
-          `/mod/korabli-lesta-l10n/${archive.name.replace(/\.mod\.zip$/, '')}`,
+          `/mod/korabli-lesta-l10n/${ghVersion}, '')}`,
           KMF_STATION_URL_BASE
         ),
         {
