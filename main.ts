@@ -52,20 +52,14 @@ const crons: Record<
 
       const preStRes = await fetch(
         new URL(
-          `/mod/korabli-lesta-l10n/${ghVersion}, '')}`,
+          '/metadata/mod/version/latest/korabli-lesta-l10n',
           KMF_STATION_URL_BASE
         ),
         {
           redirect: 'manual',
         }
       )
-      console.debug(
-        'station redirect location',
-        preStRes.headers.get('location')
-      )
-      const stVersion = preStRes.headers
-        .get('location')
-        ?.match(VERSION_REGEX)?.[0]
+      const stVersion = await preStRes.text()
       console.info('Station latest version:', stVersion)
       if (stVersion) {
         const stVersionMatch = stVersion.match(VERSION_REGEX)
