@@ -68,10 +68,20 @@ const crons: Record<
         if (stVersionMatch && ghVersionMatch) {
           if (
             Number.parseInt(stVersionMatch[1]) >
-              Number.parseInt(ghVersionMatch[1]) ||
+            Number.parseInt(ghVersionMatch[1])
+          ) {
+            console.debug('main version latest.')
+            console.info('Already latest.')
+            return
+          }
+
+          if (
+            Number.parseInt(stVersionMatch[1]) ==
+              Number.parseInt(ghVersionMatch[1]) &&
             Number.parseInt(stVersionMatch[2]) >=
               Number.parseInt(ghVersionMatch[2])
           ) {
+            console.debug('sub version latest.')
             console.info('Already latest.')
             return
           }
