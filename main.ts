@@ -27,7 +27,7 @@ const crons: Record<
   { schedule: string | Deno.CronSchedule; handler: () => Promise<void> }
 > = {
   'korabli-lesta-l10n': {
-    schedule: { hour: { every: 6 } },
+    schedule: { hour: { every: 1 } },
     handler: async () => {
       const ghRes = await octokit.request(
         'GET /repos/{owner}/{repo}/releases/latest',
