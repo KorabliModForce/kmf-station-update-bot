@@ -1,4 +1,4 @@
 root = true
 
-[*.{ts,json}]
+[*.{ts,jsonc,json}]
 indent_size = 2
