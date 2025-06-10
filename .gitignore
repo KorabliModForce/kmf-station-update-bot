@@ -113,7 +113,7 @@ dist
 # Docusaurus cache and generated files
 .docusaurus
 
-# Serverless directories
+# Serverless directoriesevery hour for update
 .serverless/
 
 # FuseBox cache
@@ -137,3 +137,7 @@ dist
 
 .env.*
 .vscode/*
+
+# Deno Deploy
+deploy.json
+deploy.jsonc
