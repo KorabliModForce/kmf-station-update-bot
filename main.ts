@@ -92,10 +92,7 @@ const crons: Record<
       console.info('Get blob.')
 
       const stRes = await fetch(
-        new URL(
-          `/mod/korabli-lesta-l10n/${ghVersion}, '')}`,
-          KMF_STATION_URL_BASE
-        ),
+        new URL(`/mod/korabli-lesta-l10n/${ghVersion}`, KMF_STATION_URL_BASE),
         {
           method: 'POST',
           headers: {
