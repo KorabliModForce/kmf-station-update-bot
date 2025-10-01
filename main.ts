@@ -2,6 +2,7 @@ import { Octokit } from 'octokit'
 import { OpenAPIHono, createRoute } from '@hono/zod-openapi'
 import { bearerAuth } from 'hono/bearer-auth'
 import { swaggerUI } from '@hono/swagger-ui'
+import { versionCompareFn } from './util.ts'
 
 const KMF_STATION_URL_BASE = Deno.env.get('KMF_STATION_URL_BASE')
 if (!KMF_STATION_URL_BASE) {
@@ -61,31 +62,10 @@ const crons: Record<
       )
       const stVersion = await preStRes.text()
       console.info('Station latest version:', stVersion)
-      if (stVersion) {
-        const stVersionMatch = stVersion.match(VERSION_REGEX)
-        const ghVersionMatch = ghVersion.match(VERSION_REGEX)
-        console.debug('matches', stVersionMatch, ghVersionMatch)
-        if (stVersionMatch && ghVersionMatch) {
-          if (
-            Number.parseInt(stVersionMatch[1]) >
-            Number.parseInt(ghVersionMatch[1])
-          ) {
-            console.debug('main version latest.')
-            console.info('Already latest.')
-            return
-          }
-
-          if (
-            Number.parseInt(stVersionMatch[1]) ==
-              Number.parseInt(ghVersionMatch[1]) &&
-            Number.parseInt(stVersionMatch[2]) >=
-              Number.parseInt(ghVersionMatch[2])
-          ) {
-            console.debug('sub version latest.')
-            console.info('Already latest.')
-            return
-          }
-        }
+      if(versionCompareFn(stVersion, ghVersion) >= 0) {
+        console.debug('version latest.')
+        console.info('Already latest.')
+        return
       }
 
       const blob = await (await fetch(archive.browser_download_url)).blob()

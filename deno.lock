@@ -1,10 +1,25 @@
 {
-  "version": "4",
+  "version": "5",
   "specifiers": {
+    "jsr:@std/assert@^1.0.14": "1.0.14",
+    "jsr:@std/internal@^1.0.10": "1.0.10",
     "npm:@hono/swagger-ui@~0.5.1": "0.5.1_hono@4.7.10",
     "npm:@hono/zod-openapi@~0.19.6": "0.19.6_hono@4.7.10_zod@3.25.28",
+    "npm:@types/semver@^7.7.1": "7.7.1",
     "npm:hono@^4.7.10": "4.7.10",
-    "npm:octokit@^5.0.2": "5.0.2_@octokit+core@7.0.2"
+    "npm:octokit@^5.0.2": "5.0.2_@octokit+core@7.0.2",
+    "npm:semver@^7.7.2": "7.7.2"
+  },
+  "jsr": {
+    "@std/assert@1.0.14": {
+      "integrity": "68d0d4a43b365abc927f45a9b85c639ea18a9fab96ad92281e493e4ed84abaa4",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/internal@1.0.10": {
+      "integrity": "e3be62ce42cab0e177c27698e5d9800122f67b766a0bea6ca4867886cbde8cf7"
+    }
   },
   "npm": {
     "@asteasolutions/zod-to-openapi@7.3.2_zod@3.25.28": {
@@ -231,6 +246,9 @@
     "@types/aws-lambda@8.10.149": {
       "integrity": "sha512-NXSZIhfJjnXqJgtS7IwutqIF/SOy1Wz5Px4gUY1RWITp3AYTyuJS4xaXr/bIJY1v15XMzrJ5soGnPM+7uigZjA=="
     },
+    "@types/semver@7.7.1": {
+      "integrity": "sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA=="
+    },
     "before-after-hook@4.0.0": {
       "integrity": "sha512-q6tR3RPqIB1pMiTRMFcZwuG5T8vwp+vUvEG0vuI6B+Rikh5BfPp2fQ82c925FOs+b0lcFQ8CFrL+KbilfZFhOQ=="
     },
@@ -265,6 +283,10 @@
         "yaml"
       ]
     },
+    "semver@7.7.2": {
+      "integrity": "sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==",
+      "bin": true
+    },
     "toad-cache@3.7.0": {
       "integrity": "sha512-/m8M+2BJUpoJdgAHoG+baCwBT+tf2VraSfkBgl0Y00qIWt41DJ8R5B8nsEw0I58YwF5IZH6z24/2TobDKnqSWw=="
     },
@@ -275,7 +297,8 @@
       "integrity": "sha512-TmnEAEAsBJVZM/AADELsK76llnwcf9vMKuPz8JflO1frO8Lchitr0fNaN9d+Ap0BjKtqWqd/J17qeDnXh8CL2A=="
     },
     "yaml@2.8.0": {
-      "integrity": "sha512-4lLa/EcQCB0cJkyts+FpIRx5G/llPxfP6VQU5KByHEhLxY3IJCH0f0Hy1MHI8sClTvsIb8qwRJ6R/ZdlDJ/leQ=="
+      "integrity": "sha512-4lLa/EcQCB0cJkyts+FpIRx5G/llPxfP6VQU5KByHEhLxY3IJCH0f0Hy1MHI8sClTvsIb8qwRJ6R/ZdlDJ/leQ==",
+      "bin": true
     },
     "zod@3.25.28": {
       "integrity": "sha512-/nt/67WYKnr5by3YS7LroZJbtcCBurDKKPBPWWzaxvVCGuG/NOsiKkrjoOhI8mJ+SQUXEbUzeB3S+6XDUEEj7Q=="
@@ -283,10 +306,13 @@
   },
   "workspace": {
     "dependencies": [
+      "jsr:@std/assert@^1.0.14",
       "npm:@hono/swagger-ui@~0.5.1",
       "npm:@hono/zod-openapi@~0.19.6",
+      "npm:@types/semver@^7.7.1",
       "npm:hono@^4.7.10",
-      "npm:octokit@^5.0.2"
+      "npm:octokit@^5.0.2",
+      "npm:semver@^7.7.2"
     ]
   }
 }

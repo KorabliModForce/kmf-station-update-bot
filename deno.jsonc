@@ -14,7 +14,10 @@
   "imports": {
     "@hono/swagger-ui": "npm:@hono/swagger-ui@^0.5.1",
     "@hono/zod-openapi": "npm:@hono/zod-openapi@^0.19.6",
+    "@std/assert": "jsr:@std/assert@^1.0.14",
+    "@types/semver": "npm:@types/semver@^7.7.1",
     "hono": "npm:hono@^4.7.10",
-    "octokit": "npm:octokit@^5.0.2"
+    "octokit": "npm:octokit@^5.0.2",
+    "semver": "npm:semver@^7.7.2"
   }
 }
