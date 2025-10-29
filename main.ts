@@ -62,7 +62,7 @@ const crons: Record<
       )
       const stVersion = await preStRes.text()
       console.info('Station latest version:', stVersion)
-      if(versionCompareFn(stVersion, ghVersion) >= 0) {
+      if(versionCompareFn(stVersion, ghVersion) <= 0) {
         console.debug('version latest.')
         console.info('Already latest.')
         return
